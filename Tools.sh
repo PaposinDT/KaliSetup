@@ -1,6 +1,5 @@
 echo "INSTALLING INFORMATION-GATHERING TOOLS"
 mkdir Tools
-bash Hacking.sh
 cd Tools
 git clone https://github.com/capture0x/XCTR-Hacking-Tools/
 git clone https://github.com/tiagorlampert/sAINT.git
