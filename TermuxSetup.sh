@@ -21,3 +21,7 @@ echo "			This tool is created for educational purpose only!
   		and we never encourage to misuse or take responsibility for any damage caused !"
 echo " Installing..."
 bash Tools.sh
+bash Hacking.sh
+bash Information-Gathering.sh
+bash Phishing.sh
+bash DDOS.sh
