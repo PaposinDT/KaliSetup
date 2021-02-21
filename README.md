@@ -24,8 +24,8 @@ $ cd KaliSetup
 
 ## SETUP
 
-$ chmod +x KaliSetup.sh
+$ chmod +x *
 
 ## RUNNING
 
-$ sudo bash KaliSetup.sh
+$ ./KaliSetup.sh
