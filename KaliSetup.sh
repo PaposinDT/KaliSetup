@@ -28,19 +28,21 @@ mkdir ./Tools
 cd ./Tools
 echo "INSTALLING GENERIC TOOLS"
 sleep 3
-echo "Cloning 6 repositories"
+echo "Cloning 7 repositories"
 sleep 2
-echo "Cloning airgeddon:             |-|-|-|-|-|-|"
+echo "Cloning airgeddon:             |-|-|-|-|-|-|-|"
 git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git --quiet
-echo "Cloning XCTR-Hacking-Tools:    |-|-|-|-|-|"
+echo "Cloning XCTR-Hacking-Tools:    |-|-|-|-|-|-|"
 git clone https://github.com/capture0x/XCTR-Hacking-Tools/ --quiet
-echo "Cloning sAINT:                 |-|-|-|-|" 
+echo "Cloning sAINT:                 |-|-|-|-|-|" 
 git clone https://github.com/tiagorlampert/sAINT.git --quiet
-echo "Cloning trape:                 |-|-|-|"
+echo "Cloning trape:                 |-|-|-|-|"
 git clone https://github.com/jofpin/trape.git --quiet
-echo "Cloning androidlockcracker:    |-|-|"
+echo "Cloning androidlockcracker:    |-|-|-|"
 git clone https://github.com/georgenicolaou/androidlockcracker.git --quiet
-echo "Cloning lazyaircrack:          |-|"
+echo "Cloning lazyaircrack:          |-|-|"
 git clone https://github.com/3xploitGuy/lazyaircrack.git --quiet
+echo "Cloning setoolkit:             |-|"
+git clone https://github.com/trustedsec/social-engineer-toolkit/ setoolkit/ --quiet
 sleep 2
 echo "INSTALLATION COMPLETED, ENJOY YOUR TOOLS!"
