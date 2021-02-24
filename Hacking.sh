@@ -22,6 +22,6 @@ echo "Cloning Apktool:               |-|-|-|"
 git clone https://github.com/iBotPeaches/Apktool.git --quiet
 echo "Cloning lynis:                 |-|-|"
 git clone https://github.com/CISOfy/lynis --quiet
-echo "Cloning FotoSploit:                 |-|"
+echo "Cloning FotoSploit:            |-|"
 git clone https://github.com/Cesar-Hack-Gray/FotoSploit.git --quiet
 sleep 2
