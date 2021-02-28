@@ -10,7 +10,7 @@ echo "Cloning RED_HAWK:               |-|-|-|-|-|-|-|-|-|-|"
 git clone https://github.com/Tuhinshubhra/RED_HAWK --quiet
 echo "Cloning Th3inspector:           |-|-|-|-|-|-|-|-|-|"
 git clone https://github.com/Moham3dRiahi/Th3inspector.git --quiet
-echo "Cloning sherlock:               |-|-|-|-|-|-||-|-|" 
+echo "Cloning sherlock:               |-|-|-|-|-|-|-|-|" 
 git clone https://github.com/sherlock-project/sherlock.git --quiet
 echo "Cloning fbi:                    |-|-|-|-|-|-|-|"
 git clone https://github.com/xHak9x/fbi.git --quiet
