@@ -4,7 +4,7 @@ mkdir ./Hacking
 cd ./Hacking
 echo "INSTALLING HACKING TOOLS"
 sleep 3
-echo "Cloning 7 repositories"
+echo "Cloning 9 repositories"
 sleep 2
 echo "Cloning hacktronian:           |-|-|-|-|-|-|-|-|-|"
 git clone https://github.com/thehackingsage/hacktronian.git --quiet
