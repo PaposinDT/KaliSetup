@@ -18,7 +18,7 @@ sleep 2
 echo "					Version 1.1
                     	 	 Coded By Riccardo Papa
            	 	Want to support me?  paypal.me/ricky2006 
-			This tool is created for educational purpose only!"
+		   This tool is created for educational purpose only!"
 echo "Installing..."
 sleep 1
 mkdir ./Tools
