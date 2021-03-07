@@ -2,7 +2,7 @@
 #Title........: KaliSetup.sh
 #Description..: This is a tool that automate best tools installation.
 #Author.......: Riccardo Papa
-#Version......: 1.7
+#Version......: 2.4
 #Usage........: sudo ./KaliSetup.sh
 # copyright(please read the license before sharing the code)
 clear
