@@ -69,4 +69,4 @@ git clone https://github.com/persianhydra/Xeexe-TopAntivirusEvasion.git --quiet
 echo "Cloning http-req-smuggling:          |-|"
 git clone https://github.com/anshumanpattnaik/http-request-smuggling.git --quiet
 sleep 2
-echo "INSTALLATION COMPLETED, ENJOY YOUR TOOLS!"
+echo "INSTALLATION COMPLETED. IF YOU LIKE THE SCRIPT, PLEASE LEAVE A STAR ON THE GITHUB REPOSITORY!"
