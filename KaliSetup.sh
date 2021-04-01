@@ -27,7 +27,7 @@ sleep 1
 echo "The installation speed depends on the signal strength."
 echo 
 sleep 1
-echo "The installation process could take up to 20 minutes"
+echo "The installation process could take up to 7 minutes"
 echo
 sleep 1
 echo "Installing..."
