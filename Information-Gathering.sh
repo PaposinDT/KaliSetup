@@ -1,16 +1,22 @@
 #!/bin/bash
-#Author.......: Riccardo Papa
+# Author.......: Riccardo Papa
 
 mkdir -p ./Information-Gathering
 ./DDoS.sh
 cd ./Information-Gathering
 
-echo
-echo "INSTALLING INFORMATION GATHERING TOOLS"
-sleep 2
-echo "Cloning 21 repositories"
-echo
-sleep 2
+spinner() {
+    local pid=$!
+    local delay=0.1
+    local spinstr='|/-\'
+    while kill -0 $pid 2>/dev/null; do
+        for (( i=0; i<${#spinstr}; i++ )); do
+            printf "\r%s [%c]" "$spinner_message" "${spinstr:$i:1}"
+            sleep $delay
+        done
+    done
+    printf "\r%s [✔]\n" "$spinner_message"
+}
 
 clone_repo() {
   local url=$1
@@ -30,9 +36,17 @@ clone_repo() {
     return
   fi
 
-  echo "Cloning $name: $folder"
-  git clone "$url" --quiet
+  spinner_message="Cloning $name"
+  git clone "$url" --quiet &
+  spinner
 }
+
+echo
+echo "INSTALLING INFORMATION GATHERING TOOLS"
+sleep 2
+echo "Cloning 21 repositories"
+echo
+sleep 2
 
 clone_repo "https://github.com/Tuhinshubhra/RED_HAWK.git" "RED_HAWK" "RED_HAWK"
 clone_repo "https://github.com/Moham3dRiahi/Th3inspector.git" "Th3inspector" "Th3inspector"
@@ -57,3 +71,4 @@ clone_repo "https://github.com/dalunacrobate/DaProfiler.git" "DaProfiler" "DaPro
 clone_repo "https://github.com/sundowndev/PhoneInfoga.git" "PhoneInfoga" "PhoneInfoga"
 
 sleep 2
+
