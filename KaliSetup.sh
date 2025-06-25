@@ -120,6 +120,8 @@ else
   echo "Directory KaliSetup does not exist. Skipping rename."
 fi
 sleep 1
+mv Ethical-Hacking/* .
+rmdir Ethical-Hacking
 
 echo "INSTALLATION COMPLETED. IF YOU LIKE THE SCRIPT, PLEASE LEAVE A STAR ON THE GITHUB REPOSITORY!"
 
