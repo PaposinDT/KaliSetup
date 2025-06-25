@@ -1,48 +1,47 @@
 #!/bin/bash
 #Author.......: Riccardo Papa
-mkdir ./DDoS
+
+mkdir -p ./DDoS
 ./BruteForce.sh
 cd ./DDoS
+
 echo
 echo "INSTALLING DDOS TOOLS"
 sleep 2
 echo "Cloning 18 repositories"
 echo
 sleep 2
-echo "Cloning PHDoS:                  |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/5inco/PHDoS.git --quiet
-echo "Cloning Anonymous:              |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/H1R0GH057/Anonymous.git --quiet
-echo "Cloning Planetwork-DDOS:        |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|" 
-git clone https://github.com/Hydra7/Planetwork-DDOS.git --quiet
-echo "Cloning t50:                    |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/foreni-packages/t50.git --quiet
-echo "Cloning webdos-ddoser:          |-|-|-|-|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/Anlos0023/webdos-ddoser.git --quiet
-echo "Cloning slowloris:              |-|-|-|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/gkbrk/slowloris.git --quiet
-echo "Cloning GoldenEye:              |-|-|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/jseidl/GoldenEye.git --quiet
-echo "Cloning hulk:                   |-|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/grafov/hulk.git --quiet
-echo "Cloning CC-attack:              |-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/Leeon123/CC-attack.git --quiet
-echo "Cloning spikey-spammer:         |-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/jagreetdg/spikey-spammer.git --quiet
-echo "Cloning iStorm:                 |-|-|-|-|-|-|-|-|"
-git clone https://github.com/RI0TS3C/iStorm.git --quiet
-echo "Cloning DDoS-Scripts:           |-|-|-|-|-|-|-|" 
-git clone https://github.com/PraneethKarnena/DDoS-Scripts.git --quiet
-echo "Cloning ufonet:                 |-|-|-|-|-|-|"
-git clone https://github.com/epsylon/ufonet.git --quiet
-echo "Cloning Raven-Storm:            |-|-|-|-|-|"
-git clone https://github.com/Taguar258/Raven-Storm.git --quiet
-echo "Cloning RAT-Hodin:              |-|-|-|-|"
-git clone https://github.com/Thibault-69/RAT-Hodin-v2.9.git --quiet
-echo "Cloning golang-httpflood:       |-|-|-|"
-git clone https://github.com/Leeon123/golang-httpflood.git --quiet
-echo "Cloning DDoS-Ripper:            |-|-|"
-git clone https://github.com/palahsu/DDoS-Ripper.git --quiet
-echo "Cloning Overload-DoS:           |-|"
-git clone https://github.com/codingplanets/Overload-DoS.git --quiet
-sleep 2
+
+clone_repo() {
+  local url=$1
+  local folder=$2
+  local name=$3
+
+  # Se cartella già esiste, skip
+  if [ -d "$folder" ]; then
+    echo "Skipping $name (already cloned)"
+    return
+  fi
+
+  # Controlla se la repo esiste (usiamo la url senza .git per la verifica)
+  repo_url="${url%.git}"
+  status=$(curl -o /dev/null -s -w "%{http_code}" "$repo_url")
+
+  if [ "$status" -ne 200 ]; then
+    echo "Repository $name not found or inaccessible (HTTP $status). Skipping."
+    return
+  fi
+
+  echo "Cloning $name: $folder"
+  git clone "$url" --quiet
+}
+
+clone_repo "https://github.com/5inco/PHDoS.git" "PHDoS" "PHDoS"
+clone_repo "https://github.com/H1R0GH057/Anonymous.git" "Anonymous" "Anonymous"
+clone_repo "https://github.com/Hydra7/Planetwork-DDOS.git" "Planetwork-DDOS" "Planetwork-DDOS"
+clone_repo "https://github.com/foreni-packages/t50.git" "t50" "t50"
+clone_repo "https://github.com/Anlos0023/webdos-ddoser.git" "webdos-ddoser" "webdos-ddoser"
+clone_repo "https://github.com/gkbrk/slowloris.git" "slowloris" "slowloris"
+clone_repo "https://github.com/jseidl/GoldenEye.git" "GoldenEye" "GoldenEye"
+clone_repo "https://github.com/grafov/hulk.git" "hulk" "hulk"
+clone_repo "https://github.com/Leeon123/CC-attack.git_
