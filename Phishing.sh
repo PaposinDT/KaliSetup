@@ -1,8 +1,9 @@
 #!/bin/bash
 #Author.......: Riccardo Papa
+
 mkdir -p ./Phishing
 ./Information-Gathering.sh
-cd ./Phishing
+cd ./Phishing || { echo "Failed to enter Phishing directory"; exit 1; }
 
 echo
 echo "INSTALLING PHISHING TOOLS"
@@ -10,6 +11,19 @@ sleep 2
 echo "Cloning 12 repositories"
 echo
 sleep 2
+
+spinner() {
+    local pid=$1
+    local delay=0.1
+    local spinstr='|/-\'
+    while kill -0 "$pid" 2>/dev/null; do
+        for i in $(seq 0 3); do
+            printf "\r[%c] Cloning in progress..." "${spinstr:i:1}"
+            sleep $delay
+        done
+    done
+    printf "\r[✔] Clone completed!          \n"
+}
 
 clone_repo() {
   local url=$1
@@ -21,7 +35,6 @@ clone_repo() {
     return
   fi
 
-  # Rimuovo .git per la verifica HTTP (GitHub accetta senza .git)
   repo_url="${url%.git}"
   status=$(curl -o /dev/null -s -w "%{http_code}" "$repo_url")
 
@@ -31,7 +44,8 @@ clone_repo() {
   fi
 
   echo "Cloning $name: $folder"
-  git clone "$url" --quiet
+  git clone "$url" --quiet &
+  spinner $!
 }
 
 clone_repo "https://github.com/xHak9x/SocialPhish.git" "SocialPhish" "SocialPhish"
