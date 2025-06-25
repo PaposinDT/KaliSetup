@@ -47,6 +47,20 @@ echo "Cloning 14 repositories"
 echo
 sleep 2
 
+# Spinner function
+spinner() {
+    local pid=$1
+    local delay=0.1
+    local spinstr='|/-\'
+    while kill -0 "$pid" 2>/dev/null; do
+        for i in $(seq 0 3); do
+            printf "\r[%c] Cloning in progress..." "${spinstr:i:1}"
+            sleep $delay
+        done
+    done
+    printf "\r[✔] Clone completed!          \n"
+}
+
 clone_repo() {
   local url=$1
   local folder=$2
@@ -72,7 +86,8 @@ clone_repo() {
   fi
 
   echo "Cloning $name: $folder"
-  git clone "$url" "$folder" --quiet
+  git clone "$url" "$folder" --quiet &
+  spinner $!
 }
 
 clone_repo "https://github.com/v1s1t0r1sh3r3/airgeddon.git" "" "airgeddon"
@@ -88,24 +103,23 @@ clone_repo "https://github.com/Scriptim/bash-prompt-generator.git" "" "bash-prom
 clone_repo "https://github.com/toolswatch/blackhat-arsenal-tools.git" "" "blackhat-arsenal-tools"
 clone_repo "https://github.com/persianhydra/Xeexe-TopAntivirusEvasion.git" "" "Xeexe"
 clone_repo "https://github.com/anshumanpattnaik/http-request-smuggling.git" "" "http-req-smuggling"
+
 sleep 1
 
 cd ..
 echo "Removing unnecessary files."
 sleep 1
-rm -r Hacking.sh
-rm -r LICENSE
-rm -r README.md
-rm -r KaliSetup.sh
-rm -r Phishing.sh
-rm -r Information-Gathering.sh
-rm -r DDoS.sh
-rm -r BruteForce.sh
+rm -f Hacking.sh LICENSE README.md KaliSetup.sh Phishing.sh Information-Gathering.sh DDoS.sh BruteForce.sh
 sleep 1
 
-echo "Renaming Folder into "Ethical-Hacking"."
+echo "Renaming Folder into \"Ethical-Hacking\"."
 cd ..
-mv KaliSetup Ethical-Hacking
+if [ -d "KaliSetup" ]; then
+  mv KaliSetup Ethical-Hacking
+else
+  echo "Directory KaliSetup does not exist. Skipping rename."
+fi
 sleep 1
 
 echo "INSTALLATION COMPLETED. IF YOU LIKE THE SCRIPT, PLEASE LEAVE A STAR ON THE GITHUB REPOSITORY!"
+
