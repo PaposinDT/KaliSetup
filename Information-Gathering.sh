@@ -1,54 +1,59 @@
 #!/bin/bash
 #Author.......: Riccardo Papa
-mkdir ./Information-Gathering
+
+mkdir -p ./Information-Gathering
 ./DDoS.sh
 cd ./Information-Gathering
+
 echo
 echo "INSTALLING INFORMATION GATHERING TOOLS"
 sleep 2
 echo "Cloning 21 repositories"
 echo
 sleep 2
-echo "Cloning RED_HAWK:               |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/Tuhinshubhra/RED_HAWK --quiet
-echo "Cloning Th3inspector:           |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/Moham3dRiahi/Th3inspector.git --quiet
-echo "Cloning sherlock:               |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|" 
-git clone https://github.com/sherlock-project/sherlock.git --quiet
-echo "Cloning fbi:                    |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/xHak9x/fbi.git --quiet
-echo "Cloning badKarma:               |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/r3vn/badKarma.git --quiet
-echo "Cloning TrackUrl:               |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/cryptomarauder/TrackUrl.git --quiet
-echo "Cloning Raccoon:                |-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/evyatarmeged/Raccoon.git --quiet
-echo "Cloning sandmap:                |-|-|-|-|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/trimstray/sandmap --quiet
-echo "Cloning sparta:                 |-|-|-|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/secforce/sparta.git --quiet
-echo "Cloning dmitry:                 |-|-|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/jaygreig86/dmitry.git --quiet
-echo "Cloning IP-Biter:          	|-|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/damianofalcioni/IP-Biter.git --quiet
-echo "Cloning webdork:           	|-|-|-|-|-|-|-|-|-|-|"
-git clone https://github.com/HACKE-RC/webdork.git --quiet
-echo "Cloning stargather:        	|-|-|-|-|-|-|-|-|-|" 
-git clone https://github.com/dwisiswant0/stargather.git --quiet
-echo "Cloning IP-Tracker:        	|-|-|-|-|-|-|-|-|"
-git clone https://github.com/anonymousproo/IP-Tracker.git --quiet
-echo "Cloning LittleBrother:          |-|-|-|-|-|-|-|"
-git clone https://github.com/Ankesh054-official/LittleBrother-GUI-.git --quiet
-echo "Cloning osint-framework:        |-|-|-|-|-|-|"
-git clone https://github.com/osint-dev-team/osint-framework.git --quiet
-echo "Cloning URLExtractor:           |-|-|-|-|-|"
-git clone https://github.com/The404Hacking/URLExtractor.git --quiet
-echo "Cloning OneForAll:              |-|-|-|-|"
-git clone https://github.com/shmilylty/OneForAll.git --quiet
-echo "Cloning Infoga:                 |-|-|-|"
-git clone https://github.com/m4ll0k/Infoga.git --quiet
-echo "Cloning DaProfiler:             |-|-|"
-git clone https://github.com/dalunacrobate/DaProfiler.git --quiet
-echo "Cloning PhoneInfoga:            |-|"
-git clone https://github.com/sundowndev/PhoneInfoga.git --quiet
+
+clone_repo() {
+  local url=$1
+  local folder=$2
+  local name=$3
+
+  if [ -d "$folder" ]; then
+    echo "Skipping $name (already cloned)"
+    return
+  fi
+
+  repo_url="${url%.git}"
+  status=$(curl -o /dev/null -s -w "%{http_code}" "$repo_url")
+
+  if [ "$status" -ne 200 ]; then
+    echo "Repository $name not found or inaccessible (HTTP $status). Skipping."
+    return
+  fi
+
+  echo "Cloning $name: $folder"
+  git clone "$url" --quiet
+}
+
+clone_repo "https://github.com/Tuhinshubhra/RED_HAWK.git" "RED_HAWK" "RED_HAWK"
+clone_repo "https://github.com/Moham3dRiahi/Th3inspector.git" "Th3inspector" "Th3inspector"
+clone_repo "https://github.com/sherlock-project/sherlock.git" "sherlock" "sherlock"
+clone_repo "https://github.com/xHak9x/fbi.git" "fbi" "fbi"
+clone_repo "https://github.com/r3vn/badKarma.git" "badKarma" "badKarma"
+clone_repo "https://github.com/cryptomarauder/TrackUrl.git" "TrackUrl" "TrackUrl"
+clone_repo "https://github.com/evyatarmeged/Raccoon.git" "Raccoon" "Raccoon"
+clone_repo "https://github.com/trimstray/sandmap.git" "sandmap" "sandmap"
+clone_repo "https://github.com/secforce/sparta.git" "sparta" "sparta"
+clone_repo "https://github.com/jaygreig86/dmitry.git" "dmitry" "dmitry"
+clone_repo "https://github.com/damianofalcioni/IP-Biter.git" "IP-Biter" "IP-Biter"
+clone_repo "https://github.com/HACKE-RC/webdork.git" "webdork" "webdork"
+clone_repo "https://github.com/dwisiswant0/stargather.git" "stargather" "stargather"
+clone_repo "https://github.com/anonymousproo/IP-Tracker.git" "IP-Tracker" "IP-Tracker"
+clone_repo "https://github.com/Ankesh054-official/LittleBrother-GUI-.git" "LittleBrother-GUI-" "LittleBrother"
+clone_repo "https://github.com/osint-dev-team/osint-framework.git" "osint-framework" "osint-framework"
+clone_repo "https://github.com/The404Hacking/URLExtractor.git" "URLExtractor" "URLExtractor"
+clone_repo "https://github.com/shmilylty/OneForAll.git" "OneForAll" "OneForAll"
+clone_repo "https://github.com/m4ll0k/Infoga.git" "Infoga" "Infoga"
+clone_repo "https://github.com/dalunacrobate/DaProfiler.git" "DaProfiler" "DaProfiler"
+clone_repo "https://github.com/sundowndev/PhoneInfoga.git" "PhoneInfoga" "PhoneInfoga"
+
 sleep 2
